@@ -1,11 +1,15 @@
 package com.hibernatetest;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import com.hibernatetest.cruddao.CrudDaoFactory;
+import com.hibernatetest.entity.onetoone.PersonInfo;
 
 public class App {
     public static void main(String[] args) {
-        SessionFactory sf = new Configuration().configure().buildSessionFactory();
-        System.out.println("Hello World!");
+        CrudDaoFactory daoFactory = new CrudDaoFactory();
+
+        PersonInfo info = daoFactory.getDao(PersonInfo.class).getById(3L);
+        System.out.println(info.getFamilyState());
+
+        HibernateUtils.getInstance().close();
     }
 }

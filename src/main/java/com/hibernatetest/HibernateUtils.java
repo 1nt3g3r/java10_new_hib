@@ -20,4 +20,12 @@ public class HibernateUtils {
     public Session createSession() {
         return sessionFactory.openSession();
     }
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void close() {
+        sessionFactory.close();
+    }
 }

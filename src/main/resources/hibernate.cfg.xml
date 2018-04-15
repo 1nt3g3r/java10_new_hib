@@ -12,14 +12,33 @@
 		<property name="hibernate.connection.password">integer231992</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
+		<!-- Caching-->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.JCacheRegionFactory</property>
+		<property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+
+		<property name="hibernate.jdbc.batch_size">100</property>
+		<property name="hibernate.order_updates">true</property>
+
 		<!-- Вивід SQL запитів в консоль -->
-		<property name="show_sql">true</property>
+		<property name="show_sql">false</property>
 		<property name="format_sql">true</property>
+
 
 		<!-- Автоматичне створення і оновлення структури БД -->
 		<property name="hibernate.hbm2ddl.auto">update</property>
 
-		<mapping class="com.hibernatetest.entity.Person"/>
-		<mapping class="com.hibernatetest.entity.PersonInfo"/>
+		<!-- OneToOne -->
+		<mapping class="com.hibernatetest.entity.onetoone.Person"/>
+		<mapping class="com.hibernatetest.entity.onetoone.PersonInfo"/>
+
+		<!-- OneToMany -->
+		<mapping class="com.hibernatetest.entity.onetomany.Cart"/>
+		<mapping class="com.hibernatetest.entity.onetomany.CartItem"/>
+
+		<!-- ManyToMany -->
+		<mapping class="com.hibernatetest.entity.manytomany.Employee"/>
+		<mapping class="com.hibernatetest.entity.manytomany.Project"/>
 	</session-factory>
 </hibernate-configuration>

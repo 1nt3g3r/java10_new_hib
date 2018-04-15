@@ -1,0 +1,11 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+         monitoring="autodetect" dynamicConfig="true">
+
+    <cache name="personCacheRegion"
+           maxEntriesLocalHeap="100"
+           eternal="false"
+           timeToLiveSeconds="2"
+           timeToIdleSeconds="2"
+           transactionalMode="off"/>
+</ehcache>

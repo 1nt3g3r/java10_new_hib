@@ -1,9 +1,13 @@
-package com.hibernatetest.entity;
+package com.hibernatetest.entity.onetoone;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Cache;
 
 @Entity
 @Table(name = "Person")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "personCacheRegion")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +17,7 @@ public class Person {
     @Column(name = "first_name")
     private String firstName;
 
-    @OneToOne(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private PersonInfo personInfo;
 
     public long getId() {
@@ -38,5 +42,14 @@ public class Person {
 
     public void setPersonInfo(PersonInfo personInfo) {
         this.personInfo = personInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", personInfo=" + personInfo +
+                '}';
     }
 }
